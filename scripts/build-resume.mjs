@@ -12,11 +12,6 @@ const htmlFile = path.join(distDir, "resume.frontend.html");
 const pdfFile = path.join(distDir, "resume.frontend.pdf");
 const stylesheetFile = path.join(rootDir, "styles", "resume.css");
 
-const sectionGroups = {
-  sidebar: new Set(["基本信息", "技术栈", "教育经历", "证书与其他"]),
-  main: new Set(["个人简介", "工作经历", "项目经历", "开源与作品"]),
-};
-
 const sectionClassNames = new Map([
   ["基本信息", "section-profile"],
   ["技术栈", "section-skills"],
@@ -85,6 +80,15 @@ function renderColumn(sections) {
   return sections.map(renderSection).join("\n");
 }
 
+function findSection(sections, title) {
+  return sections.find((section) => section.title === title);
+}
+
+function withoutSections(sections, titles) {
+  const titleSet = new Set(titles);
+  return sections.filter((section) => !titleSet.has(section.title));
+}
+
 const markdown = fs.readFileSync(sourceFile, "utf8");
 const titleMatch = markdown.match(/^#\s+(.+)$/m);
 const rawTitle = titleMatch?.[1]?.trim() ?? "Frontend Resume";
@@ -92,8 +96,11 @@ const { name, role } = splitTitle(rawTitle);
 const bodyMarkdown = markdown.replace(/^#\s+.+\n?/, "").trim();
 const sections = splitSections(bodyMarkdown);
 
-const sidebarSections = sections.filter((section) => sectionGroups.sidebar.has(section.title));
-const mainSections = sections.filter((section) => !sectionGroups.sidebar.has(section.title));
+const profileSection = findSection(sections, "基本信息");
+const skillsSection = findSection(sections, "技术栈");
+const sidebarSections = sections.filter((section) => ["教育经历", "证书与其他"].includes(section.title));
+const mainSections = withoutSections(sections, ["基本信息", "技术栈", "教育经历", "证书与其他"]);
+const flowSections = [...mainSections, ...sidebarSections];
 
 fs.mkdirSync(distDir, { recursive: true });
 
@@ -118,14 +125,12 @@ const html = `<!doctype html>
         </div>
       </header>
 
-      <div class="resume-layout">
-        <aside class="resume-sidebar">
-          ${renderColumn(sidebarSections)}
-        </aside>
-        <main class="resume-main">
-          ${renderColumn(mainSections)}
-        </main>
-      </div>
+      ${profileSection ? `<div class="resume-contact">${renderSection(profileSection)}</div>` : ""}
+      ${skillsSection ? `<div class="resume-skill-band">${renderSection(skillsSection)}</div>` : ""}
+
+      <main class="resume-flow">
+        ${renderColumn(flowSections)}
+      </main>
     </article>
   </body>
 </html>
@@ -158,4 +163,3 @@ try {
 
 console.log(`Built ${htmlFile}`);
 console.log(`Built ${pdfFile}`);
-
