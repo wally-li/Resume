@@ -1,0 +1,33 @@
+name: Build Resume
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "resume.frontend.md"
+      - "scripts/build-pdf.sh"
+      - ".github/workflows/build-resume.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pandoc and LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended fonts-noto-cjk
+
+      - name: Build PDF
+        run: ./scripts/build-pdf.sh
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume.frontend.pdf
+          path: dist/resume.frontend.pdf
+

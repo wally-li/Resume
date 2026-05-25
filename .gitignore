@@ -1,0 +1,12 @@
+# Local private notes and contact details
+private/
+*.private.md
+.env
+.env.*
+
+# Generated files
+dist/
+
+# System files
+.DS_Store
+
