@@ -2,23 +2,15 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SOURCE_FILE="$ROOT_DIR/resume.frontend.md"
-OUTPUT_DIR="$ROOT_DIR/dist"
-OUTPUT_FILE="$OUTPUT_DIR/resume.frontend.pdf"
 
-if ! command -v pandoc >/dev/null 2>&1; then
-  echo "pandoc is required to build the PDF."
-  echo "Install it first, then rerun: ./scripts/build-pdf.sh"
+if ! command -v node >/dev/null 2>&1; then
+  echo "Node.js is required to build the resume."
   exit 1
 fi
 
-mkdir -p "$OUTPUT_DIR"
+if [ ! -d "$ROOT_DIR/node_modules" ]; then
+  echo "Dependencies are missing. Run npm install first."
+  exit 1
+fi
 
-pandoc "$SOURCE_FILE" \
-  --standalone \
-  --pdf-engine=xelatex \
-  --metadata title="Frontend Resume" \
-  --metadata CJKmainfont="Noto Sans CJK SC" \
-  -o "$OUTPUT_FILE"
-
-echo "Built $OUTPUT_FILE"
+node "$ROOT_DIR/scripts/build-resume.mjs"

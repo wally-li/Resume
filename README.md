@@ -5,7 +5,9 @@
 ## 文件说明
 
 - `resume.frontend.md`: 简历主源文件，后续主要维护这里。
-- `scripts/build-pdf.sh`: 本地生成 PDF 的脚本，需要安装 `pandoc`。
+- `styles/resume.css`: HTML/PDF 共用的简历样式。
+- `scripts/build-resume.mjs`: 生成 HTML 并用 Chromium 打印 PDF。
+- `scripts/build-pdf.sh`: 本地生成 PDF 的兼容脚本。
 - `.github/workflows/build-resume.yml`: 推送到 GitHub 后自动生成 PDF 构建产物。
 
 ## 推荐维护方式
@@ -17,11 +19,21 @@
 
 ## 本地生成 PDF
 
-安装 `pandoc` 后运行：
+安装依赖后运行：
+
+```bash
+npm install
+npx playwright install chromium
+npm run build
+```
+
+也可以运行兼容脚本：
 
 ```bash
 ./scripts/build-pdf.sh
 ```
 
-生成文件会输出到 `dist/resume.frontend.pdf`。
+生成文件会输出到：
 
+- `dist/resume.frontend.html`
+- `dist/resume.frontend.pdf`

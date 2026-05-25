@@ -6,7 +6,8 @@ private/
 
 # Generated files
 dist/
+tmp/
+node_modules/
 
 # System files
 .DS_Store
-

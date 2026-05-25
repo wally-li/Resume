@@ -1,0 +1,275 @@
+:root {
+  --ink: #1f2933;
+  --muted: #667085;
+  --soft: #eef2f6;
+  --line: #d8dee8;
+  --accent: #0f766e;
+  --accent-soft: #e6f4f1;
+  --gold: #b7791f;
+  --paper: #ffffff;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #eef1f5;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #eef1f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 9.6pt;
+  line-height: 1.46;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+strong {
+  color: var(--ink);
+}
+
+.resume-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 18px auto;
+  padding: 10.5mm 12.5mm 10mm;
+  background: var(--paper);
+  box-shadow: 0 24px 60px rgb(31 41 51 / 12%);
+}
+
+.resume-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 9mm;
+  align-items: end;
+  padding-bottom: 5.5mm;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.eyebrow {
+  margin: 0 0 2mm;
+  color: var(--accent);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 25pt;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.role {
+  margin: 2mm 0 0;
+  color: var(--muted);
+  font-size: 10.5pt;
+  font-weight: 600;
+}
+
+.hero-mark {
+  display: grid;
+  place-items: center;
+  width: 15.5mm;
+  height: 15.5mm;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid #b9ddd6;
+  border-radius: 4px;
+  font-size: 10.5pt;
+  font-weight: 800;
+}
+
+.resume-layout {
+  display: grid;
+  grid-template-columns: 57mm 1fr;
+  gap: 7.5mm;
+  padding-top: 6mm;
+}
+
+.resume-sidebar {
+  padding-right: 5.5mm;
+  border-right: 1px solid var(--line);
+}
+
+.resume-section {
+  break-inside: avoid;
+  margin: 0 0 4.8mm;
+}
+
+.resume-section:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+  margin: 0 0 2.4mm;
+  color: var(--ink);
+  font-size: 9.7pt;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+h2::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--line);
+}
+
+h3 {
+  margin: 3.4mm 0 1.1mm;
+  color: var(--ink);
+  font-size: 10pt;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+h3:first-child {
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 1.8mm;
+}
+
+ul {
+  margin: 0;
+  padding-left: 4mm;
+}
+
+li {
+  margin: 0 0 1.05mm;
+  padding-left: 0.5mm;
+}
+
+code {
+  color: var(--gold);
+  background: #fff7e8;
+  border: 1px solid #f1d8ab;
+  border-radius: 3px;
+  padding: 0.3mm 1.2mm;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7.8pt;
+  white-space: normal;
+}
+
+blockquote {
+  margin: 0 0 2.2mm;
+  padding: 2.2mm 3mm;
+  color: #344054;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.resume-sidebar h2 {
+  font-size: 9.3pt;
+}
+
+.resume-sidebar ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.resume-sidebar li {
+  margin-bottom: 1.2mm;
+}
+
+.section-profile li {
+  display: grid;
+  gap: 0.5mm;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.section-profile li::first-line {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.section-skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1mm;
+}
+
+.section-skills li {
+  margin: 0;
+  padding: 0.9mm 1.3mm;
+  color: #344054;
+  background: #f6f8fb;
+  border: 1px solid #e3e8ef;
+  border-radius: 4px;
+  font-size: 7.9pt;
+  line-height: 1.28;
+}
+
+.section-summary p {
+  color: #344054;
+  font-size: 10pt;
+}
+
+.section-experience h3,
+.section-projects h3,
+.section-open-source h3 {
+  position: relative;
+  padding-left: 3.5mm;
+}
+
+.section-experience h3::before,
+.section-projects h3::before,
+.section-open-source h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 1.8mm;
+  height: 1.8mm;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.section-projects p {
+  color: var(--muted);
+  font-size: 8.8pt;
+}
+
+.section-projects p + ul,
+.section-experience p + ul {
+  margin-top: 1.5mm;
+}
+
+@media print {
+  html,
+  body {
+    background: var(--paper);
+  }
+
+  .resume-page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
