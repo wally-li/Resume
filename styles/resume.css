@@ -53,10 +53,7 @@ strong {
 }
 
 .resume-hero {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 12mm;
-  align-items: end;
+  display: block;
   padding-bottom: 8mm;
   border-bottom: 1.5px solid var(--ink);
 }
@@ -91,6 +88,7 @@ h1 {
   place-items: center;
   width: 19mm;
   height: 19mm;
+  margin-top: 5mm;
   color: var(--accent);
   background: var(--accent-soft);
   border: 1px solid var(--accent-line);
@@ -113,18 +111,20 @@ h1 {
 }
 
 .resume-contact ul {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.2mm 7mm;
+  display: block;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .resume-contact li {
-  margin: 0;
+  margin: 0 0 2.4mm;
   color: var(--muted);
   overflow-wrap: anywhere;
+}
+
+.resume-contact li:last-child {
+  margin-bottom: 0;
 }
 
 .resume-contact li::first-line {
@@ -153,10 +153,6 @@ h1 {
 .section-summary,
 .section-skills {
   break-inside: avoid;
-}
-
-.section-projects {
-  break-before: page;
 }
 
 h2 {
@@ -235,22 +231,24 @@ blockquote p:last-child {
 }
 
 .section-skills ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.8mm;
+  display: block;
   padding: 0;
   list-style: none;
 }
 
 .section-skills li {
-  margin: 0;
-  padding: 1.4mm 2.2mm;
+  margin: 0 0 1.8mm;
+  padding: 1.8mm 2.4mm;
   color: var(--text);
   background: var(--wash);
   border: 1px solid #e3e8ef;
   border-radius: 4px;
   font-size: 9.2pt;
   line-height: 1.35;
+}
+
+.section-skills li:last-child {
+  margin-bottom: 0;
 }
 
 .section-summary p {
