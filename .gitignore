@@ -5,7 +5,6 @@ private/
 .env.*
 
 # Generated files
-dist/
 tmp/
 node_modules/
 
