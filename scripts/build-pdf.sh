@@ -18,7 +18,6 @@ pandoc "$SOURCE_FILE" \
   --standalone \
   --pdf-engine=xelatex \
   --metadata title="Frontend Resume" \
-  --metadata mainfont="Noto Sans" \
   --metadata CJKmainfont="Noto Sans CJK SC" \
   -o "$OUTPUT_FILE"
 
