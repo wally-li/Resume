@@ -2,40 +2,34 @@
 
 这是我的前端开发工程师简历备份仓库。
 
-正式简历使用 [Reactive Resume](https://rxresu.me) 维护，本仓库只保存导出的文件、历史版本和投递记录。
+正式简历以 Markdown 源稿和本地 HTML/PDF 渲染引擎维护。本仓库同时保存源文件、导出文件、历史版本和投递记录。
 
 ## 文件说明
 
-- `exports/`: 当前最新导出文件，例如 PDF、JSON、DOCX。
+- `data/`: 当前维护中的简历 Markdown 源文件。
+- `exports/`: 当前最新导出文件，例如 HTML、PDF。
+- `scripts/`: 本地简历渲染与导出脚本。
+- `styles/`: 本地简历渲染样式。
 - `versions/`: 每次正式投递或阶段性修改后的历史版本。
 - `notes/`: 维护说明、投递记录、版本备注。
 
 ## 推荐维护方式
 
-1. 在 Reactive Resume 中编辑简历内容和样式。
-2. 每次重要修改后导出 PDF 和 JSON。
-3. 将最新文件放入 `exports/`。
+1. 维护 `data/resume.frontend.md` 作为主要内容源。
+2. 运行 `npm install` 安装依赖。
+3. 运行 `npm run build` 生成 `exports/姓名-职位-YYYY-MM.html` 和 `exports/姓名-职位-YYYY-MM.pdf`。
 4. 将投递用版本复制到 `versions/`，文件名带日期和方向。
 5. 每次投递前打一个清晰的 tag，例如 `v2026.05-frontend`。
 
 ## 建议文件命名
 
-- `exports/resume.frontend.pdf`
-- `exports/resume.frontend.json`
-- `exports/resume.frontend.docx`
+- `exports/李宪-高级前端开发工程师-2026-05.pdf`
+- `exports/李宪-高级前端开发工程师-2026-05.html`
 - `versions/2026-05-frontend.pdf`
-- `versions/2026-05-frontend.json`
 
-## Reactive Resume
+## 本地渲染
 
-常用入口：
+常用命令：
 
-- 在线版：https://rxresu.me
-- 官方仓库：https://github.com/amruthpillai/reactive-resume
-- 文档：https://docs.rxresu.me
-
-推荐导出：
-
-- PDF：用于投递。
-- JSON：用于备份和迁移。
-- DOCX：用于需要 Word 格式的场景。
+- `npm install`
+- `npm run build`
